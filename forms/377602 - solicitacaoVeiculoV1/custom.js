@@ -1,6 +1,6 @@
 
 
-/************** Controle USO*********************/ 
+/************** Controle USO*********************/
 
 function controlePainelUso() {
     var painelUso = document.getElementById("painelUso");
@@ -24,7 +24,7 @@ function controlePainelUso() {
         painelUso2.style.display = "none";
         painelLocadora.style.display = "none";
         painelLocadora2.style.display = "none";
-        
+
         if (Now_State == 14 && escolha1 === "painelUso") {
             painelUso.style.display = "block";
             painelLocadora.style.display = "none";
@@ -33,51 +33,62 @@ function controlePainelUso() {
             painelLocadora2.style.display = "none";
         }
     });
-    
-    escolhaPainelUso.addEventListener("load", function() {
-    	 if (escolha1 === "painelUso") {
-             painelUso.style.display = "block";
-             painelLocadora.style.display = "block";
-         } else if (escolha1 === "painelUso2") {
-             painelUso2.style.display = "block";
-             painelLocadora2.style.display = "block";
-         }
+
+    escolhaPainelUso.addEventListener("load", function () {
+        if (escolha1 === "painelUso") {
+            painelUso.style.display = "block";
+            painelLocadora.style.display = "block";
+        } else if (escolha1 === "painelUso2") {
+            painelUso2.style.display = "block";
+            painelLocadora2.style.display = "block";
+        }
     });
 }
 
 
-function mostraPaineisUso() {
-    escolhaPainelUsoVariavel = document.getElementById("escolhaPainelUso").value;
+async function mostraPaineisUso() {
     var Now_State = window.parent.ECM.workflowView.sequence
-    
-    if ( escolhaPainelUsoVariavel === "painelUso") {
+    var value = escolhaPainelUsoVariavel = await document.getElementById("escolhaPainelUso").value;
+    var text = escolhaPainelUsoVariavel = await document.getElementById("escolhaPainelUso").innerText;
+
+    if (value == "painelUso" || text == "Alugar Carro ou Pick-up") {
+        //console.log("estado 01");
         document.getElementById("painelUso").style.display = "block";
         document.getElementById("painel_locadora").style.display = "block";
     } else {
+        //console.log("estado 02");
         document.getElementById("painelUso").style.display = "none";
         document.getElementById("painel_locadora").style.display = "none";
     }
-    if ( escolhaPainelUsoVariavel === "painelUso2") {
+
+    if (value == "painelUso2" || text == "Alugar Van, Ônibus ou Micro Ônibus") {
+        //console.log("estado 03");
         document.getElementById("painelUso2").style.display = "block";
         document.getElementById("painel_locadora2").style.display = "block";
+
     } else {
+        //console.log("estado 04");
         document.getElementById("painelUso2").style.display = "none";
         document.getElementById("painel_locadora2").style.display = "none";
     }
-    if(Now_State == 42 || Now_State == 44 || Now_State == 24 || Now_State == 54  || Now_State == 66) {
-		document.getElementById("painelUso").style.display = "none";
-		document.getElementById("painelUso2").style.display = "none";
-	}
-    if(Now_State == 24 || Now_State == 66) {
-		document.getElementById("painel_locadora").style.display = "none";
-		document.getElementById("painel_locadora2").style.display = "none";
-	}
+
+    if (Now_State == 42 || Now_State == 44 || Now_State == 24 || Now_State == 54 || Now_State == 66) {
+        //console.log("estado 05");
+        document.getElementById("painelUso").style.display = "none";
+        document.getElementById("painelUso2").style.display = "none";
+    }
+    
+    if (Now_State == 24 || Now_State == 66) {
+        //console.log("estado 06");
+        document.getElementById("painel_locadora").style.display = "none";
+        document.getElementById("painel_locadora2").style.display = "none";
+    }
 }
 
 
-window.addEventListener("load", function() {
-   controlePainelUso();
-   mostraPaineisUso();
+window.addEventListener("load", function () {
+    controlePainelUso();
+    mostraPaineisUso();
 });
 
 
@@ -112,11 +123,11 @@ function mostraLugarDiaria() {
     }
 }
 
-window.addEventListener("change", function() {
+window.addEventListener("change", function () {
     mostraLugarDiaria();
 });
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
     mostraLugarDiaria();
 });
 
@@ -149,32 +160,32 @@ function painelUsuario() {
         } else if (escolha === "painelViagem2") {
             painelViagem2.style.display = "block";
         }
-    });   
-    
+    });
+
 }
 
 function mostraPaineis() {
-	escolhaPainelVariavel = document.getElementById("escolhaPainel").value;
-	var Now_State = window.parent.ECM.workflowView.sequence 
-	
-	if(escolhaPainelVariavel === "painelViagem") {
-		document.getElementById("painelViagem").style.display = "block";
-	} else {
-		document.getElementById("painelViagem").style.display = "none";
-	}
-	
-	if(escolhaPainelVariavel ==="painelViagem2") {
-		document.getElementById("painelViagem2").style.display = "block";
-	} else {
-		document.getElementById("painelViagem2").style.display = "none";
-	}
-	if(Now_State == 16 || Now_State == 36 || Now_State == 42 || Now_State == 44 || Now_State == 24 || Now_State == 23 || Now_State == 54) {
-		document.getElementById("painelViagem").style.display = "none";
-		document.getElementById("painelViagem2").style.display = "none";
-	}
+    escolhaPainelVariavel = document.getElementById("escolhaPainel").value;
+    var Now_State = window.parent.ECM.workflowView.sequence
+
+    if (escolhaPainelVariavel === "painelViagem") {
+        document.getElementById("painelViagem").style.display = "block";
+    } else {
+        document.getElementById("painelViagem").style.display = "none";
+    }
+
+    if (escolhaPainelVariavel === "painelViagem2") {
+        document.getElementById("painelViagem2").style.display = "block";
+    } else {
+        document.getElementById("painelViagem2").style.display = "none";
+    }
+    if (Now_State == 16 || Now_State == 36 || Now_State == 42 || Now_State == 44 || Now_State == 24 || Now_State == 23 || Now_State == 54) {
+        document.getElementById("painelViagem").style.display = "none";
+        document.getElementById("painelViagem2").style.display = "none";
+    }
 }
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
     painelUsuario();
     mostraPaineis();
 });
@@ -276,7 +287,7 @@ document.getElementById("dat_DataSaida2").addEventListener("change", atualizarRe
 document.getElementById("dat_DataRetorno2").addEventListener("change", atualizarResultado2);
 
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
     atualizarResultado2();
 });
 
@@ -286,15 +297,15 @@ window.addEventListener("load", function() {
 
 function aprov() {
     var carroOpcaoVariavel = document.getElementById("carroOpcao").value;
-    if(carroOpcaoVariavel === "proprio") {
+    if (carroOpcaoVariavel === "proprio") {
         document.getElementById("camposCarroProprio").style.display = "block";
         document.getElementById("camposCarroProprio2").style.display = "block";
     } else {
         document.getElementById("camposCarroProprio").style.display = "none";
         document.getElementById("camposCarroProprio2").style.display = "none";
     }
-    
-    if(carroOpcaoVariavel === "alugado") {
+
+    if (carroOpcaoVariavel === "alugado") {
         document.getElementById("camposAluguelVeiculo").style.display = "block";
         document.getElementById("camposAluguelVeiculo2").style.display = "block";
     } else {
@@ -303,7 +314,7 @@ function aprov() {
     }
 }
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
     aprov();
 });
 
@@ -318,23 +329,23 @@ function controlarCampos() {
     var tipoZ = document.getElementById("camposAluguelVeiculo");
     var tipoX = document.getElementById("camposAluguelVeiculo2");
     var tipoRESULTADO = document.getElementById("resultado");
-    
-    
+
+
 
     var selectedOpcao = select.value;
 
     if (selectedOpcao === "alugado") {
         tipoD1.style.display = "none";
-        tipoD2.style.display = "none"; 
+        tipoD2.style.display = "none";
         tipoZ.style.display = "block";
         tipoX.style.display = "block";
         tipoRESULTADO.style.display = "block";
-        
+
 
     } else if (selectedOpcao === "proprio") {
-    	tipoD1.style.display = "block";
-    	tipoD2.style.display = "block";
-    	tipoZ.style.display = "none";
+        tipoD1.style.display = "block";
+        tipoD2.style.display = "block";
+        tipoZ.style.display = "none";
         tipoX.style.display = "none";
         tipoRESULTADO.style.display = "none";
 
@@ -350,12 +361,12 @@ function controlarCampos() {
             }
         }
     } else {
-    	tipoD1.style.display = "none";
-    	tipoD2.style.display = "none";
+        tipoD1.style.display = "none";
+        tipoD2.style.display = "none";
         tipoZ.style.display = "none";
         tipoX.style.display = "none";
         tipoRESULTADO.style.display = "none";
-    
+
     }
 }
 
@@ -383,7 +394,7 @@ tipoCarroSelect.addEventListener("change", function () {
         }
     }
 });
-	
+
 /***********CARRO ALUGADO FUNÇÃO CALCULAR A DIÁRIA******************/
 
 var carroAlugadoSelect = document.getElementById("carroAlugado");
@@ -396,7 +407,7 @@ carroAlugadoSelect.addEventListener("change", function () {
     for (var i = 0; i < dataset.values.length; i++) {
         var row = dataset.values[i];
         if (row.Veiculo === selectedCarro) {
-            qtDiaInput.value = row.Diaria; 
+            qtDiaInput.value = row.Diaria;
             break;
         }
     }
@@ -418,16 +429,16 @@ function calcularDiferenca() {
 
 function calcularValorTotal() {
     const diferencaEmDias = calcularDiferenca();
-    const diferencaEmHoras = diferencaEmDias.horas; 
-    const taxaDiaria = parseFloat(qtDiaInput.value); 
-    
+    const diferencaEmHoras = diferencaEmDias.horas;
+    const taxaDiaria = parseFloat(qtDiaInput.value);
+
     if (!isNaN(taxaDiaria)) {
-        const diasComHoraExtra = diferencaEmDias.dias + (diferencaEmHoras > 0 ? 1 : 0); 
+        const diasComHoraExtra = diferencaEmDias.dias + (diferencaEmHoras > 0 ? 1 : 0);
         const valorTotal = diasComHoraExtra * taxaDiaria;
         document.getElementById("resultado_carro").value = valorTotal;
         return valorTotal;
     } else {
-        return 0; 
+        return 0;
     }
 }
 
@@ -447,15 +458,15 @@ atualizarResultado();
 /***********GASOLINA******************/
 
 function gasolina(i) {
-    var v = i.value.replace(/\D/g,'');
-    v = (v/100).toFixed(2);
+    var v = i.value.replace(/\D/g, '');
+    v = (v / 100).toFixed(2);
     v = v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
     i.value = v + ' L';
 }
 
 
 
- /***********COR DAS OPÇÕES DE AVALIAÇÃO****************/
+/***********COR DAS OPÇÕES DE AVALIAÇÃO****************/
 
 /*document.getElementById('avalSelect').addEventListener('change', function() {
     var selectedOption = this.options[this.selectedIndex];
@@ -478,7 +489,7 @@ function unidade() {
         if (mat == ds_mat.values[i]['colleaguePK.colleagueId']) {
             var und = ds_mat.values[i]['groupId'];
 
-          
+
 
             for (var j = 0; j < ds_und.values.length; j++) {
                 if (und == ds_und.values[j]['AntigaSigla']) {
@@ -493,7 +504,7 @@ function unidade() {
                     }
 
                     dir = ds_und.values[j]["MatSuperior"]
-                    console.log("diretoria: "+ dir)
+                    console.log("diretoria: " + dir)
                     if (dir == "00000428") {
                         document.getElementById("hdn_diretoria").value = 'Pool:Role:DISUP'
                     } else if (dir == "80000318") {
@@ -525,11 +536,11 @@ function formatCartao(input) {
 
 function pad(valor) {
     return valor.toString().padStart(2, '0');
-} 
+}
 
- function formata(data) {
+function formata(data) {
     return data.getFullYear() + '-' + pad(data.getMonth() + 1) + '-' + pad(data.getDate())
-           + 'T' + pad(data.getHours()) + ':' + pad(data.getMinutes());
+        + 'T' + pad(data.getHours()) + ':' + pad(data.getMinutes());
 }
 
 var hoje = new Date();
@@ -543,35 +554,35 @@ dataMinimaPosterior.setHours(dataMinima.getHours() + 48);
 
 var dataMinimaFormatada = formata(dataMinimaPosterior);
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     var campo0 = document.getElementById('dat_DataSaida');
     var campo1 = document.getElementById('dat_DataSaida2');
     var campo2 = document.getElementById('dat_DataRetorno');
     var campo3 = document.getElementById('dat_DataRetorno2');
 
     campo0.min = dataMinimaFormatada;
-    campo1.min = dataMinimaFormatada;    
+    campo1.min = dataMinimaFormatada;
     campo2.min = dataMinimaFormatada;
     campo3.min = dataMinimaFormatada;
 
-}); 
+});
 
 
 /*********** Soma o valor da diária solicitada + adição de diária ******************/
 
 function somaDiaria() {
     var diariauso = parseFloat(document.getElementById("numDiarias").value);
-    var historico1 = parseFloat(document.getElementById("hist1").value) || 0; 
+    var historico1 = parseFloat(document.getElementById("hist1").value) || 0;
     var historico2 = parseFloat(document.getElementById("hist2").value) || 0;
     var historico3 = parseFloat(document.getElementById("hist3").value) || 0;
-    
-    
+
+
     var total = diariauso + historico1 + historico2 + historico3;
-    
+
     return total;
 }
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
     var resultado = somaDiaria();
     document.getElementById("totalDiarias").value = resultado;
 });

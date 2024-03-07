@@ -10,7 +10,7 @@ function validateForm(form) {
 	 var msg = ""
 		  
 	if(Now_State == 9) {
-		if(form.getValue("slc_projeto") == "") {
+	 	 if(form.getValue("slc_projeto") == "") {
 			 msg += "\nPreencha o campo PROJETO";
 			}
 		 if(form.getValue("slc_acao") == "") {
@@ -18,7 +18,7 @@ function validateForm(form) {
 			}
 		 if(form.getValue("slc_unidade") == "") {
 			 msg += "\nPreencha o campo UNIDADE";
-			}
+			}  
 		 if(form.getValue("escolhaPainel") == "") {
 			 msg += "\nPreencha o campo TIPO DE VEÍCULO";
 			}
@@ -43,15 +43,15 @@ function validateForm(form) {
 		 if(form.getValue("justificativa") == "") {
 			 msg += "\nPreencha o campo JUSTIFICATIVA";
 		 }
-		/* if(form.getValue("carroAlugado") == "") {
+		/*  if(form.getValue("carroAlugado") == "") {
 			 msg += "\nPreencha o campo CARRO";
-			}
+			} */
 		 if(form.getValue("dat_DataSaida") == "") {
 			 msg += "\nPreencha o campo DATA SAÍDA";
 			}
 		 if(form.getValue("dat_DataRetorno") == "") {
 			 msg += "\nPreencha o campo DATA RETORNO";
-			}*/
+			}
 	 }
 	 
 	 if(Now_State == 9 && escolhaPainel =="painelViagem2"){
